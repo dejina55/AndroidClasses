@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dejina.timepicker">
+    
+    <uses-permission android:name="android.permission.INTERNET"
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,7 @@
         android:theme="@style/Theme.TimePicker">
         <activity android:name=".RecyclerView"></activity>
         <activity android:name=".DashboardActivity" />
-        <activity android:name=".ListView" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

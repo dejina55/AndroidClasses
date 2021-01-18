@@ -6,15 +6,27 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.TimePicker
+import com.dejina.timepicker.fragment.AreaFragment
+import com.dejina.timepicker.fragment.SumFragment
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btnLoadTimePicker: Button
     private lateinit var tvTime: TextView
+    private lateinit var btnSumFragment: Button
+    private lateinit var btnAreaFragment: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        btnSumFragment = findViewById(R.id.btnSum)
+        btnAreaFragment = findViewById(R.id.btnArea)
+        btnSumFragment.setOnClickListener{
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.linearContainer)
+            }
+        }
+
 
         btnLoadTimePicker = findViewById(R.id.btnLoadTimePicker)
         tvTime = findViewById(R.id.tvTime)
