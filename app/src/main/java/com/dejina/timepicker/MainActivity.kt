@@ -1,54 +1,84 @@
-package com.dejina.timepicker
-
-import android.app.TimePickerDialog
+package com.dejina.countrycapital
+import android.content.Context
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import android.widget.TimePicker
-import com.dejina.timepicker.fragment.AreaFragment
-import com.dejina.timepicker.fragment.SumFragment
-import java.util.*
+import android.widget.*
+import androidx.annotation.RequiresApi
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
+import java.io.PrintStream
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var btnLoadTimePicker: Button
-    private lateinit var tvTime: TextView
-    private lateinit var btnSumFragment: Button
-    private lateinit var btnAreaFragment: Button
 
+    private lateinit var etCountry: EditText
+    private lateinit var etCapital: EditText
+    private lateinit var btnadd: Button
+    private lateinit var listview: ListView
+    val countryCapitalMap= mutableMapOf<String,String>()
+
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btnSumFragment = findViewById(R.id.btnSum)
-        btnAreaFragment = findViewById(R.id.btnArea)
-        btnSumFragment.setOnClickListener{
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.linearContainer)
-            }
+        etCountry = findViewById(R.id.etCountry)
+        etCapital = findViewById(R.id.etCapital)
+        btnadd = findViewById(R.id.btnadd)
+        listview = findViewById(R.id.listview)
+
+        loadCountriesFromText()
+        btnadd.setOnClickListener {
+            addCountryToText()
+            loadCountriesFromText()
+            etCountry.text.clear()
+            etCapital.text.clear()
         }
 
-
-        btnLoadTimePicker = findViewById(R.id.btnLoadTimePicker)
-        tvTime = findViewById(R.id.tvTime)
-
-        btnLoadTimePicker.setOnClickListener{
-            val c = Calendar.getInstance()
-            val hour = c.get(Calendar.HOUR_OF_DAY)
-            val minute = c.get(Calendar.MINUTE)
-
-            val timePickerDialog = TimePickerDialog(
-                this, TimePickerDialog.OnTimeSetListener{ _: TimePicker?, hourOfDay: Int, minute: Int ->
-
-                    if (hourOfDay in 0..12) {
-                        tvTime.text = "$hourOfDay : $minute am"
-                    }
-                    if (hourOfDay in 13..23) {
-                        tvTime.text = "${hourOfDay-12} : $minute pm"
-                    }
-                },
-                hour, minute, true
-            )
-            timePickerDialog.show()
     }
+    private fun addCountryToText(){
+        try {
+            val country = etCountry.text.toString()
+            val capital = etCapital.text.toString()
+            val printStream = PrintStream(
+                    openFileOutput(
+                            "Country.txt",
+                            Context.MODE_APPEND
+                    )
+            )
+            printStream.println("$country -> $capital")
+            Toast.makeText(
+                    this,"$country saved", Toast.LENGTH_SHORT).show()
+
+        }catch (e: IOException) {
+            Toast.makeText(this,"Error ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun loadCountriesFromText(){
+        try{
+            val fileInputStream = openFileInput("Country.txt")
+            val inputStream = InputStreamReader(fileInputStream)
+            val bufferedReader = BufferedReader(inputStream)
+            for(line in bufferedReader.lines()){
+                val countryCapital = line.split(" -> ")
+                val country = countryCapital[0]
+                val capital = countryCapital[1]
+                countryCapitalMap[country]=capital
+            }
+            displayCountries(countryCapitalMap)
+        }catch (e:IOException){
+            Toast.makeText(this,"Error ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun displayCountries(countryCapitalMap:MutableMap<String,String>){
+        val adapter = ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                countryCapitalMap.keys.toTypedArray()
+        )
+        listview.adapter = adapter
     }
 }
