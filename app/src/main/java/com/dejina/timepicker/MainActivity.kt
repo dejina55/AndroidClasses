@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.annotation.RequiresApi
+import com.dejina.timepicker.R
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
