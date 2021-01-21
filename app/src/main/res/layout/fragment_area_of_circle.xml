@@ -3,35 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_200"
+    android:background="@color/teal_700"
     android:orientation="vertical"
-    tools:context=".SumFragment">
+    tools:context=".AreaOfCircleFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
     <EditText
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et1"
-        />
-    <EditText
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et2"
-        />
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:id="@+id/etRadius"/>
+
     <Button
-        android:id="@+id/btnAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:layout_marginBottom="30dp"
-        android:text="Add numbers"/>
+        android:id="@+id/btnCal"
+        android:text="Find area"/>
 
 </LinearLayout>
