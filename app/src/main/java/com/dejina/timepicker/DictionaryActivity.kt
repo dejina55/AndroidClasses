@@ -7,8 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
-import com.dejina.timepicker.R
-import com.example.timepicker.MeaningActivity
+
 
 import java.util.*
 

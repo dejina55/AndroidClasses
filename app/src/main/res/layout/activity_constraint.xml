@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ConstraintActivity">
 
     <ImageView
@@ -25,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.496"
-        app:srcCompat="@drawable/gta5l" />
+        app:srcCompat="@drawable/s" />
 
     <TextView
         android:id="@+id/textView"
@@ -35,7 +36,7 @@
         android:textSize="20sp"
         tools:layout_editor_absoluteX="125dp"
         tools:layout_editor_absoluteY="296dp"
-        />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView3"
@@ -44,7 +45,8 @@
         android:text="Published by Rockstar Games"
         android:textSize="20sp"
         tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="391dp" />
+        tools:layout_editor_absoluteY="391dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView4"
@@ -53,7 +55,8 @@
         android:text="Developed by Rockstar Studies"
         android:textSize="20sp"
         tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="443dp" />
+        tools:layout_editor_absoluteY="443dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView5"
@@ -62,6 +65,7 @@
         android:text="Released on 2013"
         android:textSize="20sp"
         tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="494dp" />
+        tools:layout_editor_absoluteY="494dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
